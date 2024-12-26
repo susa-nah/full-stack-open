@@ -35,6 +35,15 @@ sequenceDiagram
     participant browser
     participant server
 
+    Note right of browser: The browser sends the entered text to the server as a payload which updates the list of notse on the server
+
+    browser->>server: POST https://studies.cs.helsinki.fi/exampleapp/new_note
+    activate server
+    server-->>browser: HTML document
+    deactivate server
+
+    Note right of browser: This triggers a full refresh of page content using GET requests
+
     browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/notes
     activate server
     server-->>browser: HTML document
